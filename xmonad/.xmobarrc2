@@ -1,0 +1,16 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "gray7"
+       , fgColor = "gray60"
+       , position = Static { xpos = 0, ypos = 884, width = 1165, height = 16 }
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-t", "CPU: <total>", "-L","3","-H","50","--normal","lightblue","--high","red"] 10
+                    , Run CoreTemp ["-t","TEMP: <core0>°C | <core1>°C", "-L","50","-H","70", "-l","lightblue", "-n","green","-h","red"] 50
+                    , Run Com "get_temp.sh" ["0"] "temp0" 50
+                    , Run Com "get_temp.sh" ["1"] "temp1" 50
+                    , Run Com "get_gv.sh" [""] "gv" 100
+                    , Run Memory ["-t","MEM: <used>MB (<usedratio>%)"] 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%memory% <fc=#ff6600>»</fc> TEMP: %temp0% | %temp1% <fc=#ff6600>»</fc> %cpu% <fc=#ff6600>»</fc> [ <fc=#FFFFFF>%gv%</fc> ]}{"
+       }

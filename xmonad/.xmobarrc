@@ -1,0 +1,15 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "gray7"
+       , fgColor = "gray60"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run StdinReader
+                    , Run Battery ["-t", "BATT: <left>", "-L", "20", "-H", "80", "--high", "lightblue", "--low", "red"] 10
+                    , Run Com "get_volume.sh" [""] "vol" 10
+                    , Run Weather "KTTN" ["-t","<skyCondition> <tempF>°F","-L","10","-H","90","--normal","lightblue","--high","red","--low","white"] 36000
+                    , Run Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %battery% <fc=#ff6600>«</fc> VOL: <fc=lightblue>%vol%</fc> <fc=#ff6600>«</fc> %KTTN% <fc=#ff6600>«</fc> <fc=#FFFFFF>%date%</fc>"
+       }
