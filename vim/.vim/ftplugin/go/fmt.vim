@@ -1,0 +1,1 @@
+/home/ajay/Documents/sandbox/go/misc/vim/ftplugin/go/fmt.vim
