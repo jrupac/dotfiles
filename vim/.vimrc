@@ -113,3 +113,7 @@ let g:ConqueTerm_Color = 0
 
 """ Emacs Follow Mode: Scroll bind two windows one screenful apart
 nmap <silent> <leader>ef :vsplit<bar>wincmd l<bar>exe "norm!Ljz<c-v><CR>"<cr>:set scb<cr>:wincmd h<cr>:set scb<cr>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae5594d0907c67fd263894ba03619f40a1b6c860
