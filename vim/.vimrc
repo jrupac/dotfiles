@@ -1,10 +1,28 @@
 """ Author: Ajay Roopakalu
 
-""" Pathogen:
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+""" Vundle:
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+""" Vundle Bundles:
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tagbar'
+Bundle 'scratch.vim'
+
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+
+Bundle 'kevinw/pyflakes-vim'
 
 """  Basic Configurations:
+
 set autochdir
 set autoindent
 set autowrite
@@ -64,7 +82,7 @@ if has("autocmd")
     autocmd InsertLeave * hi StatusLine ctermfg=253 ctermbg=258 
 
 """ Automatically open Tagbar in files
-    autocmd VimEnter *.c,*.cpp,*.java,*.py,*.go nested TagbarOpen
+    autocmd VimEnter,BufNew * nested TagbarOpen
 
 """ Automatically close preview window on omnicomplete
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -92,9 +110,13 @@ nmap ; :
 let g:clipbrdDefaultReg = '+'
 
 """ TagBar Options:
-let g:tagbar_left = 1
+let g:tagbar_autoclose = 0
+let g:tagbar_autofocus = 0
+let g:tagbar_width = 40
+let g:tagbar_left = 0
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
+let g:tagbar_singleclick = 1
 
 """ Syntastic Options:
 let g:syntastic_enable_signs=1
@@ -111,9 +133,3 @@ let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_CWInsert = 1
 let g:ConqueTerm_Color = 0
 
-""" Emacs Follow Mode: Scroll bind two windows one screenful apart
-nmap <silent> <leader>ef :vsplit<bar>wincmd l<bar>exe "norm!Ljz<c-v><CR>"<cr>:set scb<cr>:wincmd h<cr>:set scb<cr>
-<<<<<<< HEAD
-=======
-
->>>>>>> ae5594d0907c67fd263894ba03619f40a1b6c860

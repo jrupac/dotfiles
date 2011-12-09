@@ -1,0 +1,19 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "gray7"
+       , fgColor = "gray60"
+       , position = Static { xpos = 0, ypos = 884, width = 1368, height = 16 }
+       , lowerOnStart = True
+       , commands = [ Run Network "eth0" ["-t", "NET: <rx> | <tx>", "-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Cpu ["-t", "CPU: <total>", "-L","3","-H","50","--normal","lightblue","--high","red"] 10
+                    , Run CoreTemp ["-t","TEMP: <core0>°C | <core1>°C", "-L","50","-H","70", "-l","lightblue", "-n","green","-h","red"] 50
+                    , Run Memory ["-t","MEM: <used>MB (<usedratio>%)"] 10
+                    , Run Com "python" ["/home/ajay/Documents/sandbox/conky-pianobar/monitor-music.py", "-r"] "py-artist" 60
+                    , Run Com "python" ["/home/ajay/Documents/sandbox/conky-pianobar/monitor-music.py", "-a"] "py-album" 60
+                    , Run Com "python" ["/home/ajay/Documents/sandbox/conky-pianobar/monitor-music.py", "-s"] "py-song" 60
+                    , Run Com "python" ["/home/ajay/Documents/sandbox/conky-pianobar/monitor-music.py", "-t"] "py-time" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%memory% <fc=#ff6600>»</fc> %eth0% <fc=#ff6600>»</fc> %coretemp% <fc=#ff6600>»</fc> %cpu% }{ <fc=#ff6600>«</fc> <fc=#FFFFFF>%py-song%</fc><fc=#AFEEEE>by</fc> <fc=#FFFFFF>%py-artist%</fc> <fc=#AFEEEE>on</fc> <fc=#FFFFFF>%py-album%</fc> <fc=#ff6600>«</fc> <fc=#FFFFFF>%py-time%</fc>"
+       }
