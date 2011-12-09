@@ -6,6 +6,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.SimplestFloat
@@ -13,11 +14,13 @@ import XMonad.Layout.Spacing
 import XMonad.Util.Run(spawnPipe)
 import System.IO
 import qualified XMonad.StackSet as W
+import qualified XMonad.Actions.FlexibleResize as Flex
+import qualified Data.Map as M
 
 -- {{
 -- Default Terminal
 -- }}
-myTerminal = "rxvt-unicode"
+myTerminal = "urxvt -letsp 0"
 
 -- {{
 -- Workspace Options
@@ -26,18 +29,20 @@ myWorkspaces =
     ["1:chrome"
     , "2:dev"
     , "3:dev"
-    , "4:im"
-    , "5:music"
-    , "6:gimp" 
-    , "7:scratch"
-    , "8:scratch"
-    , "9:ff"] 
+    {-, "4:im"-}
+    {-, "5:music"-}
+    {-, "6:gimp" -}
+    {-, "7:scratch"-}
+    {-, "8:scratch"-}
+    {-, "9:ff"] -}
+    , "4:scratch"
+    , "5:ff"] 
 
 -- {{
 -- Keyboard Options
 -- }}
 myKeys = 
-    [ ((mod1Mask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
+    [ ((mod1Mask .|. controlMask, xK_l), spawn "slimlock")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((mod4Mask, xK_u), focusUrgent)
     , ((0, 0x1008ff11), spawn "amixer sset Master,0 10%-") -- Lower Volume
@@ -53,6 +58,15 @@ myKeys =
     ]
 
 -- {{
+-- Mouse Options
+-- }}
+myMouseHook x = 
+    [ ((mod4Mask, button2), (\w -> focus w >> Flex.mouseResizeWindow w))
+    ]
+
+newMouse x = M.union (mouseBindings defaultConfig x) (M.fromList (myMouseHook x))
+
+-- {{
 -- Window Hooks 
 -- }}
 myManageHook = composeAll
@@ -64,9 +78,9 @@ myManageHook = composeAll
     ] 
     <+> 
     composeOne [ isDialog -?> doCenterFloat
-                , title =? "Nightly - Choose User Profile" -?> doCenterFloat
                 , title =? "Software Update" -?> doCenterFloat
-                , title =? "About Nightly" -?> doCenterFloat
+                , title =? "Eclipse" -?> doCenterFloat
+                , title =? "Eclipse SDK" -?> doCenterFloat
                 , title =? "py-control" -?> doCenterFloat]
     where 
         role = stringProperty "WM_WINDOW_ROLE"
@@ -87,7 +101,7 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 -- {{
 -- Layout Options
 -- }}
-myLayout = Grid ||| tiled ||| Mirror tiled ||| Full ||| simplestFloat
+myLayout = spacing 3 $ tiled ||| Grid ||| Mirror tiled ||| Full ||| simplestFloat
     where
         tiled   = Tall nmaster delta ratio
         nmaster = 1
@@ -102,7 +116,9 @@ main = do
         , workspaces = myWorkspaces
         , logHook =  myLogHook xmproc
         , layoutHook = avoidStruts  $  smartBorders $ myLayout
+        , startupHook = setWMName "LG3D"
         , terminal = myTerminal
+        , mouseBindings = newMouse
         , focusedBorderColor = "gray40"
         , normalBorderColor = "gray15"
         , borderWidth = 2

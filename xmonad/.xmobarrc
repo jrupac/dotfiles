@@ -1,15 +1,19 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "-Ubuntu-Mono-*-*-normal--10-*-*-*-*-*-*-*-*"
        , bgColor = "gray7"
        , fgColor = "gray60"
-       , position = Top
+       , position = Static { xpos = 50, ypos = 0, width = 1870, height = 16 }
        , lowerOnStart = True
        , commands = [ Run StdinReader
-                    , Run Battery ["-t", "BATT: <left>", "-L", "20", "-H", "80", "--high", "lightblue", "--low", "red"] 10
+                    , Run Com "get_batt.sh" [""] "batt" 100
                     , Run Com "get_volume.sh" [""] "vol" 10
-                    , Run Weather "KTTN" ["-t","<skyCondition> <tempF>°F","-L","10","-H","90","--normal","lightblue","--high","red","--low","white"] 36000
-                    , Run Date "%a %b %_d %Y %I:%M:%S %p" "date" 10
+                    , Run Cpu ["-t", "CPU: <total>%", "-L","2","-H","50","--normal","lightblue","--high","red"] 10
+                    , Run CoreTemp ["-t","TEMP: <core0>°C | <core1>°C", "-L","50","-H","70", "-l","lightblue", "-n","green","-h","red"] 50
+                    , Run Com "get_temp.sh" ["0"] "temp0" 50
+                    , Run Com "get_temp.sh" ["1"] "temp1" 50
+                    , Run Memory ["-t","MEM: <used>MB (<usedratio>%)", "-L", "200", "-H", "2000", "--normal", "lightblue", "--high", "red"] 10
+                    , Run Date "%a %b %_d %I:%M:%S %p" "date" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %battery% <fc=#ff6600>«</fc> VOL: <fc=lightblue>%vol%</fc> <fc=#ff6600>«</fc> %KTTN% <fc=#ff6600>«</fc> <fc=#FFFFFF>%date%</fc>"
+       , template = "%StdinReader% }{%cpu% <fc=#ff6600>«</fc> TEMP: <fc=lightblue>%temp0%</fc> | <fc=lightblue>%temp1%</fc> <fc=#ff6600>«</fc> %memory% <fc=#ff6600>«</fc> BATT: <fc=lightblue>%batt%</fc> <fc=#ff6600>«</fc> VOL: <fc=lightblue>%vol%</fc> <fc=#ff6600>«</fc> <fc=#FFFFFF>%date%</fc>"
        }
