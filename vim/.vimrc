@@ -3,6 +3,20 @@
 """ Pathogen:
 call pathogen#infect()
 
+""" Vundle:
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'ervandew/supertab'
+Bundle 'majutsushi/tagbar'
+Bundle 'kien/ctrlp.vim'
+
 """  Basic Configurations:
 
 set autochdir
@@ -72,7 +86,7 @@ if has("autocmd")
     autocmd FileType make setlocal noexpandtab
 
 """ Hard tabs in .txt files
-
+    autocmd BufRead *.txt setlocal noexpandtab
 
 """ Open TagBar
     autocmd VimEnter * nested TagbarOpen
