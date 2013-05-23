@@ -1,25 +1,7 @@
 """ Author: Ajay Roopakalu
 
-""" Vundle:
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-""" Vundle Bundles:
-Bundle 'gmarik/vundle'
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tagbar'
-Bundle 'scratch.vim'
-
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
-
-Bundle 'kevinw/pyflakes-vim'
+""" Pathogen:
+call pathogen#infect()
 
 """  Basic Configurations:
 
@@ -27,19 +9,27 @@ set autochdir
 set autoindent
 set autowrite
 set bs=2
-set colorcolumn=80
 set cursorline
 set expandtab
+set foldlevelstart=99
 set foldmethod=syntax
+set guioptions-=m
+set guioptions-=r
+set guioptions-=T
+set guioptions-=L
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
 set lz
+set list
+set listchars=
+set listchars=tab:▸\ ,trail:⋅,nbsp:⋅
 set mouse=a
 set nocompatible
 set nowrap
 set number
+set pastetoggle=<F12>
 set ruler
 set shiftwidth=4
 set showcmd
@@ -53,6 +43,10 @@ set wildmenu
 set wildmode=longest,full
 set whichwrap+=h,l,<,>
 
+if v:version >= 703
+    set colorcolumn=80
+endif
+
 """ Options:
 filetype on
 filetype plugin on
@@ -64,36 +58,39 @@ let maplocalleader = ","
 
 
 """ Autocmd Options:
-if has("autocmd") 
+if has("autocmd")
 """ Java options
     autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """ Python options
-    autocmd BufRead *.py setlocal foldmethod=indent
+    autocmd BufRead *.py setlocal foldmethod=indent expandtab
+
+""" OCaml options
+    autocmd FileType ocaml setlocal ts=2 sw=2 colorcolumn=80
 
 """ Hard tabs in Makefiles
     autocmd FileType make setlocal noexpandtab
 
 """ Hard tabs in .txt files
-    autocmd BufRead,BufNew *.txt setlocal noexpandtab
+
+
+""" Open TagBar
+    autocmd VimEnter * nested TagbarOpen
 
 """ "Obvious Mode"
     autocmd InsertEnter * hi StatusLine ctermfg=202 ctermbg=258
-    autocmd InsertLeave * hi StatusLine ctermfg=253 ctermbg=258 
-
-""" Automatically open Tagbar in files
-    autocmd VimEnter,BufNew * nested TagbarOpen
+    autocmd InsertLeave * hi StatusLine ctermfg=253 ctermbg=258
 
 """ Automatically close preview window on omnicomplete
     autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif 
-endif 
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+endif
 
 
 """ Theme Options:
 set background=dark
 set t_Co=256
-colors railscasts
+colors mustang
 hi SignColumn guibg=#384048 guifg=#a0a8b0 gui=none ctermfg=239 ctermbg=232
 
 """ Misc Mappings And Configs:
@@ -103,7 +100,7 @@ imap jj <Esc>
 nnoremap <silent> <C-Left> :tabprevious<CR>
 nnoremap <silent> <C-Right> :tabnext<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
-nnoremap ' ` 
+nnoremap ' `
 vmap < <gv
 vmap > >gv
 nmap ; :
@@ -128,8 +125,13 @@ com! S Sscratch
 """ SuperTab Options:
 let g:SuperTabDefaultCompletionType = 'context'
 
-""" Conque Options:
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_CWInsert = 1
-let g:ConqueTerm_Color = 0
+""" Pylint Options:
+let g:pymode_lint_checker = 'pyflakes'
+let g:pymode_lint_onfly = 1
+let g:pymode_syntax = 0
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_extended_complete = 1
+
+let g:Powerline_symbols = 'fancy'
+let g:syntastic_ocaml_use_ocamlc = 1
 

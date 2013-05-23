@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/ajay/Documents/sandbox/workspace/DreamCatcher/src/apps/jrupac/dreamcatcher/app'
+let g:netrw_dirhist_2='/home/ajay/.config/synapse'
+let g:netrw_dirhist_3='/home/ajay/Documents/sandbox/intellij/PanesLibrary2/.git'
+let g:netrw_dirhist_4='/usr/share/doc/synapse'

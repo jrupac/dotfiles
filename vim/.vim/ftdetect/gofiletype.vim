@@ -1,1 +1,0 @@
-/home/ajay/Documents/sandbox/go/misc/vim/ftdetect/gofiletype.vim

@@ -23,6 +23,9 @@ if version >= 700
 endif
 
 " General colors
+hi TabLineSel guifg=#efefef guibg=#1c1c1b guisp=#1c1c1b gui=bold ctermfg=255 ctermbg=237 cterm=bold
+hi TabLine guifg=#b6bf98 guibg=#181818 guisp=#181818 gui=bold ctermfg=144 ctermbg=236 cterm=bold
+hi TabLineFill guifg=#cfcfaf guibg=#181818 guisp=#181818 gui=bold ctermfg=187 ctermbg=236 cterm=bold
 hi Cursor 		guifg=NONE    guibg=#626262 gui=none ctermbg=241
 hi Normal 		guifg=#e2e2e5 guibg=#202020 gui=none ctermfg=253 ctermbg=234
 hi NonText 		guifg=#808080 guibg=#303030 gui=none ctermfg=244 ctermbg=235
