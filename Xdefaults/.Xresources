@@ -1,0 +1,49 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+URxvt*scrollBar: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollTtyKeypress: true
+URxvt*secondaryScreen: 1
+URxvt*secondaryScroll: 0
+URxvt*secondaryWheel: 1
+
+URxvt*font: xft:Fira Mono:size=9,xft:Inconsolata\ for\ Powerline:pixelsize=12
+URxvt*letterSpace: -2
+URxvt*clipboard.autocopy: true
+
+URxvt*perl-ext-common: selection-to-clipboard,pasta
+URxvt*keysym.Control-Shift-V: perl:pasta:paste
+URxvt*iso14755: False
+
+URxvt*iconFile: /usr/share/icons/hicolor/scalable/apps/Terminal.svg
+
+URxvt*termName: rxvt-256color
+URxvt*xftAntialias: true
+URxvt*background: #3f3f3f
+URxvt*foreground: #dcdccc
+URxvt*cursorColor: #aaaaaa
+URxvt*colorUL: #669090
+URxvt*underlineColor: #dfaf8f
+URxvt*color0: #3f3f3f
+URxvt*color1: #cc9393
+URxvt*color2: #7f9f7f
+URxvt*color3: #d0bf8f
+URxvt*color4: #6ca0a3
+URxvt*color5: #dc8cc3
+URxvt*color6: #93e0e3
+URxvt*color7: #dcdccc
+URxvt*color8: #000000
+URxvt*color9: #dca3a3
+URxvt*color10: #bfebbf
+URxvt*color11: #f0dfaf
+URxvt*color12: #8cd0d3
+URxvt*color13: #dc8cc3
+URxvt*color14: #93e0e3
+URxvt*color15: #ffffff
