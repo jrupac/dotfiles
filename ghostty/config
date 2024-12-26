@@ -1,0 +1,12 @@
+theme=catppuccin-mocha
+cursor-style-blink=false
+background-opacity=0.95
+window-theme=ghostty
+window-height=24
+window-width=80
+copy-on-select=true
+shell-integration-features=no-cursor
+gtk-titlebar=true
+adw-toolbar-style=raised-border
+gtk-wide-tabs=false
+bold-is-bright=true
